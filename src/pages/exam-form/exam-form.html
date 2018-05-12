@@ -1,0 +1,30 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>examForm</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-list>
+
+        <ion-item>
+          <ion-label floating>name</ion-label>
+          <ion-input type="text" [(ngModel)]="username"></ion-input>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label floating>phoneNo</ion-label>
+          <ion-input type="tel" [(ngModel)]="password"></ion-input>
+        </ion-item>
+
+      
+    
+      </ion-list>
+      <button small (click)="submit()">submit</button>
+  
+
+</ion-content>
