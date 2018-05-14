@@ -10,11 +10,26 @@ import { LoginPage } from "../pages/login/login";
 import { DataProvider } from "../providers/data/data";
 import { ExamFormPage } from "../pages/exam-form/exam-form";
 
+/* firebase config import */
+import { FirebaseConfig } from "../app/firebase.config";
+/* angular fire module import */
+import { AngularFireModule } from "angularfire2";
+/* angular firebase authentication module import*/
+import { AngularFireAuthModule } from "angularfire2/auth";
+//  angular firebase databse module
+import { AngularFireDatabaseModule } from "angularfire2/database";
+
 @NgModule({
-  declarations: [MyApp, HomePage, LoginPage,ExamFormPage],
-  imports: [BrowserModule, IonicModule.forRoot(MyApp)],
+  declarations: [MyApp, HomePage, LoginPage, ExamFormPage],
+  imports: [
+    BrowserModule,
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(FirebaseConfig),
+    AngularFireAuthModule,
+    AngularFireDatabaseModule
+  ],
   bootstrap: [IonicApp],
-  entryComponents: [MyApp, HomePage, LoginPage,ExamFormPage],
+  entryComponents: [MyApp, HomePage, LoginPage, ExamFormPage],
   providers: [
     StatusBar,
     SplashScreen,

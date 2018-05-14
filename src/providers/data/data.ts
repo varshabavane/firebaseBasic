@@ -1,17 +1,14 @@
-//import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
 @Injectable()
 export class DataProvider {
   data = [];
 
-  constructor() {
-    
-  }
+  constructor() {}
 
   saveData(regDetails) {
     this.data.push(regDetails);
-    alert("service: " +  JSON.stringify(this.data))
+    alert("service: " + JSON.stringify(this.data));
   }
 
   getData(uDetails) {
