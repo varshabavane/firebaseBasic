@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { NavController } from "ionic-angular";
+import { NavController,NavParams } from "ionic-angular";
 import { LoginPage } from "../login/login";
 import { DataProvider } from "../../providers/data/data";
 
@@ -7,8 +7,11 @@ import { DataProvider } from "../../providers/data/data";
   selector: "page-home",
   templateUrl: "home.html"
 })
-export class HomePage {
-  constructor(public navCtrl: NavController, public dataStore:DataProvider) {}
+export class HomePage { 
+  username;
+  constructor(public navCtrl: NavController, public dataStore:DataProvider, public navparams:NavParams) {
+    this.username=this.navparams.get('uname');
+  }
 
   register(uname, pass) {
     alert("hello");
