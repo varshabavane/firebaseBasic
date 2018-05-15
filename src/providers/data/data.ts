@@ -7,6 +7,8 @@ export class DataProvider {
 
   constructor(public fireAuth: AngularFireAuth) {}
 
+  //signUp with firebase
+
   async fireSignUp(regDetails) {
     alert(regDetails.username);
     try {
@@ -22,6 +24,8 @@ export class DataProvider {
       alert(JSON.stringify(error));
     }
   }
+
+  //signIn firebase funtion
 
   async signIn(regDetails) {
     try {
@@ -39,5 +43,11 @@ export class DataProvider {
       alert(JSON.stringify(error));
       return false;
     }
+  }
+
+  //firebase CRUD operatons
+
+  fireCreate(u,p){
+
   }
 }

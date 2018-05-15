@@ -18,13 +18,13 @@
     
         <ion-item>
           <ion-label floating>phoneNo</ion-label>
-          <ion-input type="tel" [(ngModel)]="password"></ion-input>
+          <ion-input type="tel" [(ngModel)]="phoneNo"></ion-input>
         </ion-item>
 
       
     
       </ion-list>
-      <button small (click)="submit()">submit</button>
+      <button small (click)="submit(username,phoneNo)">submit</button>
   
 
 </ion-content>
