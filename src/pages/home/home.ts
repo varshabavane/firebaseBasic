@@ -25,7 +25,7 @@ export class HomePage {
     };
 
     alert(JSON.stringify(details));
-    this.dataStore.saveData(details);
+    this.dataStore.fireSignUp(details);
     this.navCtrl.push(LoginPage);
   }
 }

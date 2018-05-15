@@ -5,26 +5,7 @@ import { AngularFireAuth } from "angularfire2/auth/auth";
 export class DataProvider {
   data = [];
 
-  constructor(private fireAuth: AngularFireAuth) {}
-
-  saveData(regDetails) {
-    this.data.push(regDetails);
-    alert("service: " + JSON.stringify(regDetails));
-    this.fireSignUp(regDetails);
-  }
-
-  getData(uDetails) {
-    this.signIn(uDetails);
-    // for (let i = 0; i <= this.data.length; i++) {
-    //   if (uDetails.username === this.data[i].username) {
-    //     if (uDetails.password === this.data[i].password) {
-    //       return true;
-    //     } else {
-    //       return false;
-    //     }
-    //   }
-    // }
-  }
+  constructor(public fireAuth: AngularFireAuth) {}
 
   async fireSignUp(regDetails) {
     alert(regDetails.username);
@@ -35,22 +16,28 @@ export class DataProvider {
           regDetails.password
         )
         .then(details => {
-          alert(JSON.stringify(details));
+          alert(JSON.stringify(details.uid));
         });
     } catch (error) {
       alert(JSON.stringify(error));
     }
   }
 
-  signIn(regDetails) {
+  async signIn(regDetails) {
     try {
-      this.fireAuth.auth
+      await this.fireAuth.auth
         .signInWithEmailAndPassword(regDetails.username, regDetails.password)
         .then(logDetils => {
           alert(JSON.stringify(logDetils));
-        }).catch(e=>alert(JSON.stringify(e)));
+          if (logDetils.uid) {
+            return true;
+          }
+        })
+        .catch(e => alert(JSON.stringify(e)));
+      return true;
     } catch (error) {
       alert(JSON.stringify(error));
+      return false;
     }
   }
 }

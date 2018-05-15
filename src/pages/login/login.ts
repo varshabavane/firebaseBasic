@@ -18,15 +18,17 @@ export class LoginPage {
     console.log("ionViewDidLoad LoginPage");
   }
 
-  login(uname, pass) {
+  async login(uname, pass) {
     let uDetails = {
       username: uname,
       password: pass
     };
 
     alert("logDetils from provider:" + JSON.stringify(uDetails));
-    alert(this.dataStore.getData(uDetails));
-    if (this.dataStore.getData(uDetails)) {
+
+    let a = await this.dataStore.signIn(uDetails);
+    alert(a);
+    if (a) {
       this.navCtrl.push(ExamFormPage);
     }
   }
