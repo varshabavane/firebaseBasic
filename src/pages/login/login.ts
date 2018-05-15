@@ -19,12 +19,11 @@ export class LoginPage {
   }
 
   login(uname, pass) {
-    let uDetails = [
-      {
-        username: uname,
-        password: pass
-      }
-    ];
+    let uDetails = {
+      username: uname,
+      password: pass
+    };
+
     alert("logDetils from provider:" + JSON.stringify(uDetails));
     alert(this.dataStore.getData(uDetails));
     if (this.dataStore.getData(uDetails)) {
