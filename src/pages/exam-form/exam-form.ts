@@ -38,4 +38,8 @@ export class ExamFormPage {
     this.data.fireRemove(xmFormData)
 
   }
+
+  read(){
+    this.data.fireRead()
+  }
 }

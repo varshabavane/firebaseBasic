@@ -57,7 +57,7 @@ export class DataProvider {
     // }
   }
 
-  //firebase CRUD operatons
+  //firebase CRUD operations with obcject
   //for creating update and set the info.(destructive Update)
   fireCreate(xmInfo) {
     this.examForm.set(xmInfo);
@@ -70,5 +70,12 @@ export class DataProvider {
 //delete data 
   fireRemove(xmDetailDelete) {
     this.fireDB.object('ExamForm/'+xmDetailDelete).remove()
+  }
+
+  fireRead(){
+    this.examForm.snapshotChanges().subscribe(readData=>{
+      alert(JSON.stringify(readData))
+    })
+
   }
 }
