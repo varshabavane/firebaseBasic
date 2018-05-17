@@ -2,11 +2,19 @@ import { Injectable } from "@angular/core";
 // firebase authentication
 import { AngularFireAuth } from "angularfire2/auth/auth";
 //for firebaseDatabase operation
-import { AngularFireDatabase, AngularFireObject } from "angularfire2/database";
+import {
+  AngularFireDatabase,
+  AngularFireObject,
+  AngularFireList
+} from "angularfire2/database";
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 @Injectable()
 export class DataProvider {
   data = [];
   examForm: AngularFireObject<any>;
+  friendList: AngularFireList<any>;
+  listObservable:Observable<any>;
 
   constructor(
     private fireAuth: AngularFireAuth,
@@ -63,19 +71,18 @@ export class DataProvider {
     this.examForm.set(xmInfo);
   }
 
-  //for update exam form info 
+  //for update exam form info
   fireUpdate(xmInfoUpdate) {
     this.examForm.update(xmInfoUpdate);
   }
-//delete data 
+  //delete data
   fireRemove(xmDetailDelete) {
-    this.fireDB.object('ExamForm/'+xmDetailDelete).remove()
+    this.fireDB.object("ExamForm/" + xmDetailDelete).remove();
   }
 
-  fireRead(){
-    this.examForm.snapshotChanges().subscribe(readData=>{
-      alert(JSON.stringify(readData))
-    })
-
+  fireRead() {
+    this.examForm.snapshotChanges().subscribe(readData => {
+      alert(JSON.stringify(readData));
+    });
   }
 }

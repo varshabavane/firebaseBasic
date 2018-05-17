@@ -42,4 +42,9 @@ export class ExamFormPage {
   read(){
     this.data.fireRead()
   }
+
+  createFrndList(){
+    
+
+  }
 }
