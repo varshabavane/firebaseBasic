@@ -1,11 +1,19 @@
 import { Injectable } from "@angular/core";
+// firebase authentication
 import { AngularFireAuth } from "angularfire2/auth/auth";
-
+//for firebaseDatabase operation
+import { AngularFireDatabase, AngularFireObject } from "angularfire2/database";
 @Injectable()
 export class DataProvider {
   data = [];
+  examForm: AngularFireObject<any>;
 
-  constructor(public fireAuth: AngularFireAuth) {}
+  constructor(
+    private fireAuth: AngularFireAuth,
+    private fireDB: AngularFireDatabase
+  ) {
+    this.examForm = this.fireDB.object("ExamForm");
+  }
 
   //signUp with firebase
 
@@ -28,26 +36,39 @@ export class DataProvider {
   //signIn firebase funtion
 
   async signIn(regDetails) {
-    try {
-      await this.fireAuth.auth
-        .signInWithEmailAndPassword(regDetails.username, regDetails.password)
-        .then(logDetils => {
-          alert(JSON.stringify(logDetils));
-          if (logDetils.uid) {
-            return true;
-          }
-        })
-        .catch(e => alert(JSON.stringify(e)));
-      return true;
-    } catch (error) {
-      alert(JSON.stringify(error));
-      return false;
-    }
+    return true;
+    // try {
+    //   let a = await this.fireAuth.auth
+    //     .signInWithEmailAndPassword(regDetails.username, regDetails.password)
+    //     .then(logDetils => {
+    //       alert(JSON.stringify(logDetils));
+    //       if (logDetils.uid) {
+    //         return true;
+    //       }
+    //     })
+    //     .catch(e => {
+    //       alert(JSON.stringify(e));
+    //       return false;
+    //     });
+    //   return a;
+    // } catch (error) {
+    //   alert(JSON.stringify(error));
+    //   return false;
+    // }
   }
 
   //firebase CRUD operatons
+  //for creating update and set the info.(destructive Update)
+  fireCreate(xmInfo) {
+    this.examForm.set(xmInfo);
+  }
 
-  fireCreate(u,p){
-
+  //for update exam form info 
+  fireUpdate(xmInfoUpdate) {
+    this.examForm.update(xmInfoUpdate);
+  }
+//delete data 
+  fireRemove(xmDetailDelete) {
+    this.fireDB.object('ExamForm/'+xmDetailDelete).remove()
   }
 }

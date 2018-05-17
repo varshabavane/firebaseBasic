@@ -7,13 +7,35 @@ import { DataProvider } from "../../providers/data/data";
   templateUrl: "exam-form.html"
 })
 export class ExamFormPage {
-  constructor(public navCtrl: NavController, public navParams: NavParams, public data:DataProvider) {}
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public data: DataProvider
+  ) {}
 
   ionViewDidLoad() {
     console.log("ionViewDidLoad ExamFormPage");
   }
-  submit(uname, phone) {
-    this.data.fireCreate(uname,phone)
-    alert("hello");
+  create(uname, phone) {
+    let studDetails = {
+      studname: uname ? uname : "fyt",
+      phoneNo: phone
+    };
+
+    this.data.fireCreate(studDetails);
+  }
+
+  update(u, p) {
+    let studDetailUpdate = {
+      studname: u,
+      phoneNo: p,
+      email: "mail"
+    };
+    this.data.fireUpdate(studDetailUpdate);
+  }
+
+  delete(xmFormData){
+    this.data.fireRemove(xmFormData)
+
   }
 }
