@@ -7,11 +7,17 @@ import { DataProvider } from "../../providers/data/data";
   templateUrl: "exam-form.html"
 })
 export class ExamFormPage {
+  friends = "";
+  friendList;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public data: DataProvider
-  ) {}
+  ) {
+    this.friendList=this.data.listObservable;
+    // this.friendList = this.data.firebaseListRead();
+    // console.log(JSON.stringify(this.friendList))
+  }
 
   ionViewDidLoad() {
     console.log("ionViewDidLoad ExamFormPage");
@@ -34,17 +40,25 @@ export class ExamFormPage {
     this.data.fireUpdate(studDetailUpdate);
   }
 
-  delete(xmFormData){
-    this.data.fireRemove(xmFormData)
-
+  delete(xmFormData) {
+    alert(JSON.stringify(xmFormData))
+    this.data.firelistRemove(xmFormData);
   }
 
-  read(){
-    this.data.fireRead()
+  read() {
+    this.data.fireRead();
   }
 
-  createFrndList(){
-    
-
+  createFrndList(f) {
+    if (f.length > 1) {
+      this.data.friendListCreate({friend: this.friends});
+      this.friends='';
+    }
   }
+
+
+  // dataRead(){
+  //   this.data.firebaseListRead()
+
+  // }
 }

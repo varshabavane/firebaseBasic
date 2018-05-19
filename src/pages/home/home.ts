@@ -18,13 +18,11 @@ export class HomePage {
   }
 
   register(uname, pass) {
-    alert("hello");
     let details = {
       username: uname,
       password: pass
     };
 
-    alert(JSON.stringify(details));
     this.dataStore.fireSignUp(details);
     this.navCtrl.push(LoginPage);
   }

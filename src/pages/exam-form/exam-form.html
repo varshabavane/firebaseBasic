@@ -21,7 +21,7 @@
     </ion-item>
     <ion-item>
       <ion-label floating>Friend List</ion-label>
-      <ion-input type="tel" [(ngModel)]="friends"></ion-input>
+      <ion-input type="text" [(ngModel)]="friends"></ion-input>
     </ion-item>
 
 
@@ -30,18 +30,19 @@
 
 
   <ion-list>
-    <ion-item *ngFor="let item of data, i as index">
-      <ion-icon name="trash" item-end (tap)="delete(i)"> </ion-icon>
-      {{item}}
+    <ion-item *ngFor="let item of friendList|async">
+      <ion-icon name="trash" item-end (tap)="delete(item.key)"> </ion-icon>
+      {{item.friend}}
 
     </ion-item>
 
   </ion-list>
-  <button (click)="createFrndList(friends)">addFriends</button>
+  <button ion-button (click)="createFrndList(friends)">addFriends</button>
 
-  <button small (click)="create(username,phoneNo)">create</button>
-  <button small (click)="update(username,phoneNo)">update</button>
-  <button small (click)="read(username,phoneNo)">read</button>
-  <button small (click)="delete('add/tal')">delete</button>
+  <button ion-button (click)="create(username,phoneNo)">create</button>
+  <button ion-button (click)="update(username,phoneNo)">update</button>
+  <button ion-button (click)="read(username,phoneNo)">read</button>
+  <!-- <button ion-button (click)="delete('add/tal')">delete</button> -->
+  <!-- <button ion-button (click)="dataRead()">readFriends</button> -->
 
 </ion-content>
